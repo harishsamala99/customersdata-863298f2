@@ -14,16 +14,177 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      bookings: {
+        Row: {
+          amount: number
+          booking_date: string
+          booking_time: string
+          chauffeur_assigned: string | null
+          created_at: string
+          created_by: string | null
+          customer_id: string
+          dropoff_location: string
+          id: string
+          notes: string | null
+          payment_status: Database["public"]["Enums"]["payment_status"]
+          pickup_location: string
+          ride_status: Database["public"]["Enums"]["ride_status"]
+          updated_at: string
+          vehicle: string | null
+        }
+        Insert: {
+          amount?: number
+          booking_date: string
+          booking_time: string
+          chauffeur_assigned?: string | null
+          created_at?: string
+          created_by?: string | null
+          customer_id: string
+          dropoff_location: string
+          id?: string
+          notes?: string | null
+          payment_status?: Database["public"]["Enums"]["payment_status"]
+          pickup_location: string
+          ride_status?: Database["public"]["Enums"]["ride_status"]
+          updated_at?: string
+          vehicle?: string | null
+        }
+        Update: {
+          amount?: number
+          booking_date?: string
+          booking_time?: string
+          chauffeur_assigned?: string | null
+          created_at?: string
+          created_by?: string | null
+          customer_id?: string
+          dropoff_location?: string
+          id?: string
+          notes?: string | null
+          payment_status?: Database["public"]["Enums"]["payment_status"]
+          pickup_location?: string
+          ride_status?: Database["public"]["Enums"]["ride_status"]
+          updated_at?: string
+          vehicle?: string | null
+        }
+        Relationships: [
+          {
+            foreignKeyName: "bookings_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customer_stats"
+            referencedColumns: ["customer_id"]
+          },
+          {
+            foreignKeyName: "bookings_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customer_notes: {
+        Row: {
+          body: string
+          created_at: string
+          created_by: string | null
+          customer_id: string
+          id: string
+        }
+        Insert: {
+          body: string
+          created_at?: string
+          created_by?: string | null
+          customer_id: string
+          id?: string
+        }
+        Update: {
+          body?: string
+          created_at?: string
+          created_by?: string | null
+          customer_id?: string
+          id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "customer_notes_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customer_stats"
+            referencedColumns: ["customer_id"]
+          },
+          {
+            foreignKeyName: "customer_notes_customer_id_fkey"
+            columns: ["customer_id"]
+            isOneToOne: false
+            referencedRelation: "customers"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      customers: {
+        Row: {
+          company_name: string | null
+          created_at: string
+          created_by: string | null
+          email: string | null
+          full_name: string
+          home_address: string | null
+          id: string
+          notes: string | null
+          phone: string | null
+          preferred_vehicle: string | null
+          tags: Database["public"]["Enums"]["customer_tag"][]
+          updated_at: string
+        }
+        Insert: {
+          company_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name: string
+          home_address?: string | null
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          preferred_vehicle?: string | null
+          tags?: Database["public"]["Enums"]["customer_tag"][]
+          updated_at?: string
+        }
+        Update: {
+          company_name?: string | null
+          created_at?: string
+          created_by?: string | null
+          email?: string | null
+          full_name?: string
+          home_address?: string | null
+          id?: string
+          notes?: string | null
+          phone?: string | null
+          preferred_vehicle?: string | null
+          tags?: Database["public"]["Enums"]["customer_tag"][]
+          updated_at?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
-      [_ in never]: never
+      customer_stats: {
+        Row: {
+          customer_id: string | null
+          total_amount_spent: number | null
+          total_trips: number | null
+        }
+        Relationships: []
+      }
     }
     Functions: {
       [_ in never]: never
     }
     Enums: {
-      [_ in never]: never
+      customer_tag: "VIP" | "Corporate" | "Frequent"
+      payment_status: "unpaid" | "paid" | "refunded" | "partial"
+      ride_status: "pending" | "confirmed" | "completed" | "cancelled"
     }
     CompositeTypes: {
       [_ in never]: never
@@ -150,6 +311,10 @@ export type CompositeTypes<
 
 export const Constants = {
   public: {
-    Enums: {},
+    Enums: {
+      customer_tag: ["VIP", "Corporate", "Frequent"],
+      payment_status: ["unpaid", "paid", "refunded", "partial"],
+      ride_status: ["pending", "confirmed", "completed", "cancelled"],
+    },
   },
 } as const
