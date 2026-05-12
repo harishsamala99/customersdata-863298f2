@@ -71,13 +71,6 @@ export type Database = {
             foreignKeyName: "bookings_customer_id_fkey"
             columns: ["customer_id"]
             isOneToOne: false
-            referencedRelation: "customer_stats"
-            referencedColumns: ["customer_id"]
-          },
-          {
-            foreignKeyName: "bookings_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
             referencedRelation: "customers"
             referencedColumns: ["id"]
           },
@@ -106,13 +99,6 @@ export type Database = {
           id?: string
         }
         Relationships: [
-          {
-            foreignKeyName: "customer_notes_customer_id_fkey"
-            columns: ["customer_id"]
-            isOneToOne: false
-            referencedRelation: "customer_stats"
-            referencedColumns: ["customer_id"]
-          },
           {
             foreignKeyName: "customer_notes_customer_id_fkey"
             columns: ["customer_id"]
@@ -169,14 +155,7 @@ export type Database = {
       }
     }
     Views: {
-      customer_stats: {
-        Row: {
-          customer_id: string | null
-          total_amount_spent: number | null
-          total_trips: number | null
-        }
-        Relationships: []
-      }
+      [_ in never]: never
     }
     Functions: {
       [_ in never]: never
