@@ -23,6 +23,9 @@ const schema = z.object({
   home_address: z.string().trim().max(300).optional().or(z.literal("")),
   company_name: z.string().trim().max(120).optional().or(z.literal("")),
   preferred_vehicle: z.string().trim().max(80).optional().or(z.literal("")),
+  chauffeur_preference: z.string().trim().max(120).optional().or(z.literal("")),
+  billing_details: z.string().trim().max(500).optional().or(z.literal("")),
+  account_status: z.enum(["active", "inactive", "vip", "suspended"]).default("active"),
   notes: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 
