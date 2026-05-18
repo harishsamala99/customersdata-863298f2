@@ -48,21 +48,8 @@ export function AppSidebar() {
         })}
       </nav>
 
-      <div className="p-3 border-t border-sidebar-border space-y-2">
-        <div className="px-3 py-2 text-xs text-sidebar-foreground/60 truncate">
-          {user?.email}
-        </div>
-        <button
-          onClick={async () => {
-            await signOut();
-            toast.success("Signed out");
-            navigate({ to: "/login" });
-          }}
-          className="w-full flex items-center gap-3 px-3 py-2 rounded-md text-sm text-sidebar-foreground/80 hover:bg-sidebar-accent transition-colors"
-        >
-          <LogOut className="h-4 w-4" />
-          Sign out
-        </button>
+      <div className="p-4 border-t border-sidebar-border text-[10px] uppercase tracking-[0.25em] text-sidebar-foreground/50">
+        Admin Console · v1.0
       </div>
     </aside>
   );
