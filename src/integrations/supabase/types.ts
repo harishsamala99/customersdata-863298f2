@@ -110,6 +110,9 @@ export type Database = {
       }
       customers: {
         Row: {
+          account_status: string
+          billing_details: string | null
+          chauffeur_preference: string | null
           company_name: string | null
           created_at: string
           created_by: string | null
@@ -124,6 +127,9 @@ export type Database = {
           updated_at: string
         }
         Insert: {
+          account_status?: string
+          billing_details?: string | null
+          chauffeur_preference?: string | null
           company_name?: string | null
           created_at?: string
           created_by?: string | null
@@ -138,6 +144,9 @@ export type Database = {
           updated_at?: string
         }
         Update: {
+          account_status?: string
+          billing_details?: string | null
+          chauffeur_preference?: string | null
           company_name?: string | null
           created_at?: string
           created_by?: string | null
