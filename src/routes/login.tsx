@@ -49,15 +49,18 @@ function LoginPage() {
         <div className="relative z-10 flex flex-col justify-between p-16 w-full">
           <div className="flex items-center gap-3">
             <Crown className="h-7 w-7 text-gold" />
-            <span className="font-display text-xl tracking-wide">Noir &amp; Gold</span>
+            <div className="leading-tight">
+              <div className="font-display text-xl tracking-wide">Superior Limousine LLC</div>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Executive Transportation</div>
+            </div>
           </div>
           <div className="space-y-4 max-w-md">
-            <div className="text-xs uppercase tracking-[0.3em] text-gold">Limousine CRM</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-gold">Admin CRM</div>
             <h1 className="text-5xl font-display leading-tight">
               Where every <span className="gradient-gold-text">journey</span> begins with elegance.
             </h1>
             <p className="text-muted-foreground">
-              Manage clients, chauffeurs, and bookings with the polish your fleet deserves.
+              Manage clients, chauffeurs, reservations and billing with the polish your fleet deserves.
             </p>
           </div>
           <div className="text-xs text-muted-foreground tracking-widest uppercase">
