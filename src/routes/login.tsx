@@ -49,15 +49,18 @@ function LoginPage() {
         <div className="relative z-10 flex flex-col justify-between p-16 w-full">
           <div className="flex items-center gap-3">
             <Crown className="h-7 w-7 text-gold" />
-            <span className="font-display text-xl tracking-wide">Noir &amp; Gold</span>
+            <div className="leading-tight">
+              <div className="font-display text-xl tracking-wide">Superior Limousine LLC</div>
+              <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Executive Transportation</div>
+            </div>
           </div>
           <div className="space-y-4 max-w-md">
-            <div className="text-xs uppercase tracking-[0.3em] text-gold">Limousine CRM</div>
+            <div className="text-xs uppercase tracking-[0.3em] text-gold">Admin CRM</div>
             <h1 className="text-5xl font-display leading-tight">
               Where every <span className="gradient-gold-text">journey</span> begins with elegance.
             </h1>
             <p className="text-muted-foreground">
-              Manage clients, chauffeurs, and bookings with the polish your fleet deserves.
+              Manage clients, chauffeurs, reservations and billing with the polish your fleet deserves.
             </p>
           </div>
           <div className="text-xs text-muted-foreground tracking-widest uppercase">
@@ -68,9 +71,12 @@ function LoginPage() {
 
       <div className="flex-1 flex items-center justify-center p-6">
         <form onSubmit={submit} className="w-full max-w-md luxury-card rounded-xl p-8 space-y-6">
-          <div className="lg:hidden flex items-center gap-2 justify-center">
-            <Crown className="h-6 w-6 text-gold" />
-            <span className="font-display text-lg">Noir &amp; Gold</span>
+          <div className="lg:hidden flex flex-col items-center gap-1 justify-center text-center">
+            <div className="flex items-center gap-2">
+              <Crown className="h-6 w-6 text-gold" />
+              <span className="font-display text-lg">Superior Limousine LLC</span>
+            </div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Executive Transportation</div>
           </div>
           <div className="space-y-1 text-center">
             <h2 className="text-2xl font-display">{mode === "login" ? "Admin Sign In" : "Create Admin"}</h2>

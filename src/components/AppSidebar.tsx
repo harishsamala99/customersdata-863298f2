@@ -25,8 +25,8 @@ export function AppSidebar() {
           <Crown className="h-5 w-5 text-primary-foreground" />
         </div>
         <div>
-          <div className="font-display text-lg leading-none">Noir &amp; Gold</div>
-          <div className="text-[10px] uppercase tracking-[0.25em] text-gold mt-1">Limo CRM</div>
+          <div className="font-display text-base leading-tight">Superior Limousine LLC</div>
+          <div className="text-[10px] uppercase tracking-[0.25em] text-gold mt-1">Executive Transportation</div>
         </div>
       </div>
 
@@ -77,7 +77,7 @@ export function MobileTopBar() {
     <div className="md:hidden bg-sidebar border-b border-sidebar-border">
       <div className="px-4 py-3 flex items-center gap-3">
         <Crown className="h-5 w-5 text-gold" />
-        <span className="font-display">Noir &amp; Gold</span>
+        <span className="font-display">Superior Limousine LLC</span>
       </div>
       <div className="flex overflow-x-auto px-2 pb-2 gap-1">
         {items.map((it) => {

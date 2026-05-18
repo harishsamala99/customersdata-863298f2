@@ -23,6 +23,9 @@ const schema = z.object({
   home_address: z.string().trim().max(300).optional().or(z.literal("")),
   company_name: z.string().trim().max(120).optional().or(z.literal("")),
   preferred_vehicle: z.string().trim().max(80).optional().or(z.literal("")),
+  chauffeur_preference: z.string().trim().max(120).optional().or(z.literal("")),
+  billing_details: z.string().trim().max(500).optional().or(z.literal("")),
+  account_status: z.enum(["active", "inactive", "vip", "suspended"]).default("active"),
   notes: z.string().trim().max(2000).optional().or(z.literal("")),
 });
 
@@ -36,24 +39,31 @@ type Props = {
 export function CustomerForm({ open, onOpenChange, initial, onSaved }: Props) {
   const [form, setForm] = useState({
     full_name: "", phone: "", email: "", home_address: "",
-    company_name: "", preferred_vehicle: "", notes: "",
+    company_name: "", preferred_vehicle: "", chauffeur_preference: "",
+    billing_details: "", account_status: "active" as "active" | "inactive" | "vip" | "suspended",
+    notes: "",
   });
   const [tags, setTags] = useState<Tag[]>([]);
   const [busy, setBusy] = useState(false);
 
   useEffect(() => {
     if (open) {
+      const init = initial as (Customer & { chauffeur_preference?: string | null; billing_details?: string | null; account_status?: string | null }) | null | undefined;
       setForm({
-        full_name: initial?.full_name ?? "",
-        phone: initial?.phone ?? "",
-        email: initial?.email ?? "",
-        home_address: initial?.home_address ?? "",
-        company_name: initial?.company_name ?? "",
-        preferred_vehicle: initial?.preferred_vehicle ?? "",
-        notes: initial?.notes ?? "",
+        full_name: init?.full_name ?? "",
+        phone: init?.phone ?? "",
+        email: init?.email ?? "",
+        home_address: init?.home_address ?? "",
+        company_name: init?.company_name ?? "",
+        preferred_vehicle: init?.preferred_vehicle ?? "",
+        chauffeur_preference: init?.chauffeur_preference ?? "",
+        billing_details: init?.billing_details ?? "",
+        account_status: (init?.account_status as typeof form.account_status) ?? "active",
+        notes: init?.notes ?? "",
       });
-      setTags((initial?.tags as Tag[] | null) ?? []);
+      setTags((init?.tags as Tag[] | null) ?? []);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [open, initial]);
 
   const submit = async (e: React.FormEvent) => {
@@ -71,6 +81,9 @@ export function CustomerForm({ open, onOpenChange, initial, onSaved }: Props) {
       home_address: parsed.data.home_address || null,
       company_name: parsed.data.company_name || null,
       preferred_vehicle: parsed.data.preferred_vehicle || null,
+      chauffeur_preference: parsed.data.chauffeur_preference || null,
+      billing_details: parsed.data.billing_details || null,
+      account_status: parsed.data.account_status,
       notes: parsed.data.notes || null,
       tags,
     };
@@ -116,6 +129,24 @@ export function CustomerForm({ open, onOpenChange, initial, onSaved }: Props) {
           </Field>
           <Field label="Preferred Vehicle">
             <Input value={form.preferred_vehicle} onChange={(e) => setForm({ ...form, preferred_vehicle: e.target.value })} placeholder="e.g. Mercedes S-Class" maxLength={80} />
+          </Field>
+          <Field label="Chauffeur Preferences">
+            <Input value={form.chauffeur_preference} onChange={(e) => setForm({ ...form, chauffeur_preference: e.target.value })} placeholder="e.g. Marcus, no music, English speaking" maxLength={120} />
+          </Field>
+          <Field label="Account Status">
+            <select
+              value={form.account_status}
+              onChange={(e) => setForm({ ...form, account_status: e.target.value as typeof form.account_status })}
+              className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm"
+            >
+              <option value="active">Active</option>
+              <option value="vip">VIP</option>
+              <option value="inactive">Inactive</option>
+              <option value="suspended">Suspended</option>
+            </select>
+          </Field>
+          <Field label="Payment Method / Billing Details" className="sm:col-span-2">
+            <Textarea rows={2} value={form.billing_details} onChange={(e) => setForm({ ...form, billing_details: e.target.value })} placeholder="e.g. Visa •••• 4242 / Net-30 invoice to billing@acme.com" maxLength={500} />
           </Field>
           <Field label="Tags" className="sm:col-span-2">
             <div className="flex gap-2 flex-wrap">
