@@ -12,8 +12,6 @@ const items = [
 
 export function AppSidebar() {
   const path = useRouterState({ select: (s) => s.location.pathname });
-  const { signOut, user } = useAuth();
-  const navigate = useNavigate();
 
   const isActive = (url: string) => path === url || path.startsWith(url + "/");
 
