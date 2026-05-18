@@ -130,6 +130,24 @@ export function CustomerForm({ open, onOpenChange, initial, onSaved }: Props) {
           <Field label="Preferred Vehicle">
             <Input value={form.preferred_vehicle} onChange={(e) => setForm({ ...form, preferred_vehicle: e.target.value })} placeholder="e.g. Mercedes S-Class" maxLength={80} />
           </Field>
+          <Field label="Chauffeur Preferences">
+            <Input value={form.chauffeur_preference} onChange={(e) => setForm({ ...form, chauffeur_preference: e.target.value })} placeholder="e.g. Marcus, no music, English speaking" maxLength={120} />
+          </Field>
+          <Field label="Account Status">
+            <select
+              value={form.account_status}
+              onChange={(e) => setForm({ ...form, account_status: e.target.value as typeof form.account_status })}
+              className="flex h-9 w-full rounded-md border border-input bg-background px-3 py-1 text-sm shadow-sm"
+            >
+              <option value="active">Active</option>
+              <option value="vip">VIP</option>
+              <option value="inactive">Inactive</option>
+              <option value="suspended">Suspended</option>
+            </select>
+          </Field>
+          <Field label="Payment Method / Billing Details" className="sm:col-span-2">
+            <Textarea rows={2} value={form.billing_details} onChange={(e) => setForm({ ...form, billing_details: e.target.value })} placeholder="e.g. Visa •••• 4242 / Net-30 invoice to billing@acme.com" maxLength={500} />
+          </Field>
           <Field label="Tags" className="sm:col-span-2">
             <div className="flex gap-2 flex-wrap">
               {ALL_TAGS.map((t) => {
