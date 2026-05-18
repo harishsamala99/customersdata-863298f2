@@ -1,8 +1,7 @@
-import { Link, useRouterState, useNavigate } from "@tanstack/react-router";
-import { Crown, LayoutDashboard, Users, CalendarDays, CarFront, LogOut } from "lucide-react";
-import { useAuth } from "@/lib/auth";
-import { toast } from "sonner";
+import { Link, useRouterState } from "@tanstack/react-router";
+import { Crown, LayoutDashboard, Users, CalendarDays, CarFront } from "lucide-react";
 import { cn } from "@/lib/utils";
+
 
 const items = [
   { title: "Dashboard", url: "/dashboard", icon: LayoutDashboard },
