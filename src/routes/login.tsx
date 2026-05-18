@@ -71,9 +71,12 @@ function LoginPage() {
 
       <div className="flex-1 flex items-center justify-center p-6">
         <form onSubmit={submit} className="w-full max-w-md luxury-card rounded-xl p-8 space-y-6">
-          <div className="lg:hidden flex items-center gap-2 justify-center">
-            <Crown className="h-6 w-6 text-gold" />
-            <span className="font-display text-lg">Noir &amp; Gold</span>
+          <div className="lg:hidden flex flex-col items-center gap-1 justify-center text-center">
+            <div className="flex items-center gap-2">
+              <Crown className="h-6 w-6 text-gold" />
+              <span className="font-display text-lg">Superior Limousine LLC</span>
+            </div>
+            <div className="text-[10px] uppercase tracking-[0.3em] text-gold">Executive Transportation</div>
           </div>
           <div className="space-y-1 text-center">
             <h2 className="text-2xl font-display">{mode === "login" ? "Admin Sign In" : "Create Admin"}</h2>
