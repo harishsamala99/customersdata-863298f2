@@ -25,8 +25,8 @@ export function AppSidebar() {
           <Crown className="h-5 w-5 text-primary-foreground" />
         </div>
         <div>
-          <div className="font-display text-lg leading-none">Noir &amp; Gold</div>
-          <div className="text-[10px] uppercase tracking-[0.25em] text-gold mt-1">Limo CRM</div>
+          <div className="font-display text-base leading-tight">Superior Limousine LLC</div>
+          <div className="text-[10px] uppercase tracking-[0.25em] text-gold mt-1">Executive Transportation</div>
         </div>
       </div>
 
