@@ -1,5 +1,4 @@
-import { createFileRoute, Outlet, Navigate } from "@tanstack/react-router";
-import { useAuth } from "@/lib/auth";
+import { createFileRoute, Outlet } from "@tanstack/react-router";
 import { AppSidebar, MobileTopBar } from "@/components/AppSidebar";
 
 export const Route = createFileRoute("/_authenticated")({
@@ -7,16 +6,6 @@ export const Route = createFileRoute("/_authenticated")({
 });
 
 function AuthLayout() {
-  const { session, loading } = useAuth();
-  if (loading) {
-    return (
-      <div className="min-h-screen grid place-items-center bg-background">
-        <div className="text-gold animate-pulse text-sm tracking-widest">LOADING</div>
-      </div>
-    );
-  }
-  if (!session) return <Navigate to="/login" replace />;
-
   return (
     <div className="min-h-screen flex w-full bg-background">
       <AppSidebar />
