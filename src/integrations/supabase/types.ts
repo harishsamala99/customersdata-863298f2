@@ -111,52 +111,82 @@ export type Database = {
       customers: {
         Row: {
           account_status: string
+          billing_address: string | null
           billing_details: string | null
+          card_brand: string | null
+          card_exp_month: number | null
+          card_exp_year: number | null
+          card_holder_name: string | null
+          card_last4: string | null
           chauffeur_preference: string | null
           company_name: string | null
           created_at: string
           created_by: string | null
+          date_of_birth: string | null
           email: string | null
           full_name: string
           home_address: string | null
           id: string
+          id_number: string | null
+          id_type: string | null
           notes: string | null
           phone: string | null
           preferred_vehicle: string | null
+          shipping_address: string | null
           tags: Database["public"]["Enums"]["customer_tag"][]
           updated_at: string
         }
         Insert: {
           account_status?: string
+          billing_address?: string | null
           billing_details?: string | null
+          card_brand?: string | null
+          card_exp_month?: number | null
+          card_exp_year?: number | null
+          card_holder_name?: string | null
+          card_last4?: string | null
           chauffeur_preference?: string | null
           company_name?: string | null
           created_at?: string
           created_by?: string | null
+          date_of_birth?: string | null
           email?: string | null
           full_name: string
           home_address?: string | null
           id?: string
+          id_number?: string | null
+          id_type?: string | null
           notes?: string | null
           phone?: string | null
           preferred_vehicle?: string | null
+          shipping_address?: string | null
           tags?: Database["public"]["Enums"]["customer_tag"][]
           updated_at?: string
         }
         Update: {
           account_status?: string
+          billing_address?: string | null
           billing_details?: string | null
+          card_brand?: string | null
+          card_exp_month?: number | null
+          card_exp_year?: number | null
+          card_holder_name?: string | null
+          card_last4?: string | null
           chauffeur_preference?: string | null
           company_name?: string | null
           created_at?: string
           created_by?: string | null
+          date_of_birth?: string | null
           email?: string | null
           full_name?: string
           home_address?: string | null
           id?: string
+          id_number?: string | null
+          id_type?: string | null
           notes?: string | null
           phone?: string | null
           preferred_vehicle?: string | null
+          shipping_address?: string | null
           tags?: Database["public"]["Enums"]["customer_tag"][]
           updated_at?: string
         }
