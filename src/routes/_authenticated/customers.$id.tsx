@@ -191,11 +191,6 @@ function CustomerDetail() {
         <Section title="Contact">
           <InfoRow icon={<Mail className="h-4 w-4 text-gold" />} label="Email" value={customer.email} />
           <InfoRow icon={<Phone className="h-4 w-4 text-gold" />} label="Phone" value={customer.phone} />
-      {/* Info grid */}
-      <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-        <Section title="Contact">
-          <InfoRow icon={<Mail className="h-4 w-4 text-gold" />} label="Email" value={customer.email} />
-          <InfoRow icon={<Phone className="h-4 w-4 text-gold" />} label="Phone" value={customer.phone} />
           <InfoRow icon={<Calendar className="h-4 w-4 text-gold" />} label="Date of Birth" value={customer.date_of_birth} />
         </Section>
         <Section title="Addresses">
