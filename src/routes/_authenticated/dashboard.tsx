@@ -19,6 +19,7 @@ type Stats = {
 
 type RecentBooking = {
   id: string;
+  customer_id: string;
   pickup_location: string;
   dropoff_location: string;
   booking_date: string;
@@ -112,7 +113,11 @@ function Dashboard() {
               )}
               {recent.map((b) => (
                 <tr key={b.id} className="border-b border-border/50 hover:bg-muted/40">
-                  <td className="px-6 py-3 font-medium">{b.customers?.full_name ?? "—"}</td>
+                  <td className="px-6 py-3 font-medium">
+                    <Link to="/customers/$id" params={{ id: b.customer_id }} className="hover:text-gold transition-colors">
+                      {b.customers?.full_name ?? "—"}
+                    </Link>
+                  </td>
                   <td className="px-6 py-3 text-muted-foreground">
                     {b.pickup_location} <span className="text-gold">→</span> {b.dropoff_location}
                   </td>
