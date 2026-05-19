@@ -19,6 +19,7 @@ type Stats = {
 
 type RecentBooking = {
   id: string;
+  customer_id: string;
   pickup_location: string;
   dropoff_location: string;
   booking_date: string;
@@ -42,7 +43,7 @@ function Dashboard() {
       supabase.from("bookings").select("amount").eq("payment_status", "paid"),
       supabase
         .from("bookings")
-        .select("id,pickup_location,dropoff_location,booking_date,booking_time,ride_status,payment_status,amount,customers(full_name)")
+        .select("id,customer_id,pickup_location,dropoff_location,booking_date,booking_time,ride_status,payment_status,amount,customers(full_name)")
         .order("created_at", { ascending: false })
         .limit(6),
     ]).then(([c, b, t, paid, rec]) => {
@@ -112,7 +113,11 @@ function Dashboard() {
               )}
               {recent.map((b) => (
                 <tr key={b.id} className="border-b border-border/50 hover:bg-muted/40">
-                  <td className="px-6 py-3 font-medium">{b.customers?.full_name ?? "—"}</td>
+                  <td className="px-6 py-3 font-medium">
+                    <Link to="/customers/$id" params={{ id: b.customer_id }} className="hover:text-gold transition-colors">
+                      {b.customers?.full_name ?? "—"}
+                    </Link>
+                  </td>
                   <td className="px-6 py-3 text-muted-foreground">
                     {b.pickup_location} <span className="text-gold">→</span> {b.dropoff_location}
                   </td>

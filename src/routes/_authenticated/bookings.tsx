@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
 import { Plus, Search, FileDown, Pencil, Trash2 } from "lucide-react";
 import { toast } from "sonner";
@@ -141,7 +141,11 @@ function BookingsPage() {
               )}
               {pageRows.map((b) => (
                 <tr key={b.id} className="border-b border-border/50 hover:bg-muted/30">
-                  <td className="px-4 py-2 font-medium">{b.customers?.full_name ?? "—"}</td>
+                  <td className="px-4 py-2 font-medium">
+                    <Link to="/customers/$id" params={{ id: b.customer_id }} className="hover:text-gold transition-colors">
+                      {b.customers?.full_name ?? "—"}
+                    </Link>
+                  </td>
                   <td className="px-4 py-2 text-muted-foreground whitespace-nowrap">{b.booking_date} · {b.booking_time.slice(0,5)}</td>
                   <td className="px-4 py-2 text-muted-foreground">{b.pickup_location} <span className="text-gold">→</span> {b.dropoff_location}</td>
                   <td className="px-4 py-2">{b.chauffeur_assigned ?? "—"}</td>
