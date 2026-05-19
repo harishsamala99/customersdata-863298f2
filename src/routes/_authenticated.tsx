@@ -8,7 +8,7 @@ export const Route = createFileRoute("/_authenticated")({
 
 function AuthLayout() {
   return (
-    <div className="relative min-h-screen flex w-full bg-background">
+    <div className="relative min-h-screen flex w-full">
       <video
         className="fixed inset-0 w-full h-full object-cover -z-10 opacity-25 pointer-events-none"
         src={bgVideo}
