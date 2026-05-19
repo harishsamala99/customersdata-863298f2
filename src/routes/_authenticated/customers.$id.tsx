@@ -23,6 +23,16 @@ type Customer = Database["public"]["Tables"]["customers"]["Row"] & {
   chauffeur_preference?: string | null;
   billing_details?: string | null;
   account_status?: string | null;
+  date_of_birth?: string | null;
+  billing_address?: string | null;
+  shipping_address?: string | null;
+  id_type?: string | null;
+  id_number?: string | null;
+  card_holder_name?: string | null;
+  card_brand?: string | null;
+  card_last4?: string | null;
+  card_exp_month?: number | null;
+  card_exp_year?: number | null;
 };
 type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 type Note = Database["public"]["Tables"]["customer_notes"]["Row"];
@@ -181,22 +191,47 @@ function CustomerDetail() {
         <Section title="Contact">
           <InfoRow icon={<Mail className="h-4 w-4 text-gold" />} label="Email" value={customer.email} />
           <InfoRow icon={<Phone className="h-4 w-4 text-gold" />} label="Phone" value={customer.phone} />
-          <InfoRow icon={<MapPin className="h-4 w-4 text-gold" />} label="Address" value={customer.home_address} />
+          <InfoRow icon={<Calendar className="h-4 w-4 text-gold" />} label="Date of Birth" value={customer.date_of_birth} />
         </Section>
-        <Section title="Business">
+        <Section title="Addresses">
+          <InfoRow icon={<MapPin className="h-4 w-4 text-gold" />} label="Home" value={customer.home_address} multiline />
+          <InfoRow icon={<MapPin className="h-4 w-4 text-gold" />} label="Billing" value={customer.billing_address} multiline />
+          <InfoRow icon={<MapPin className="h-4 w-4 text-gold" />} label="Shipping" value={customer.shipping_address} multiline />
+        </Section>
+        <Section title="Account">
           <InfoRow icon={<Building2 className="h-4 w-4 text-gold" />} label="Company" value={customer.company_name} />
-          <InfoRow icon={<UserCheck className="h-4 w-4 text-gold" />} label="Account Status" value={status} capitalize />
-          <InfoRow icon={<Calendar className="h-4 w-4 text-gold" />} label="Date Added" value={customer.created_at.slice(0, 10)} />
+          <InfoRow icon={<UserCheck className="h-4 w-4 text-gold" />} label="Status" value={status} capitalize />
+          <InfoRow icon={<FileText className="h-4 w-4 text-gold" />} label={customer.id_type || "ID"} value={customer.id_number} />
+          <InfoRow icon={<Calendar className="h-4 w-4 text-gold" />} label="Client Since" value={customer.created_at.slice(0, 10)} />
         </Section>
         <Section title="Service Preferences">
           <InfoRow icon={<Car className="h-4 w-4 text-gold" />} label="Preferred Vehicle" value={customer.preferred_vehicle} />
           <InfoRow icon={<UserCheck className="h-4 w-4 text-gold" />} label="Chauffeur" value={customer.chauffeur_preference} />
           <InfoRow icon={<MessageSquare className="h-4 w-4 text-gold" />} label="Special Requests" value={customer.notes} multiline />
         </Section>
-        <Section title="Billing" className="md:col-span-2 lg:col-span-1">
-          <InfoRow icon={<CreditCard className="h-4 w-4 text-gold" />} label="Payment Method" value={customer.billing_details} multiline />
+        <Section title="Payment on File" className="md:col-span-2 lg:col-span-2">
+          {customer.card_last4 ? (
+            <>
+              <InfoRow
+                icon={<CreditCard className="h-4 w-4 text-gold" />}
+                label="Card"
+                value={`${customer.card_brand ?? "Card"} •••• ${customer.card_last4}${
+                  customer.card_exp_month && customer.card_exp_year
+                    ? `   exp ${String(customer.card_exp_month).padStart(2, "0")}/${customer.card_exp_year}`
+                    : ""
+                }`}
+              />
+              <InfoRow icon={<UserCheck className="h-4 w-4 text-gold" />} label="Cardholder" value={customer.card_holder_name} />
+            </>
+          ) : (
+            <p className="text-sm text-muted-foreground italic">No card on file.</p>
+          )}
+          <InfoRow icon={<FileText className="h-4 w-4 text-gold" />} label="Billing Terms" value={customer.billing_details} multiline />
+          <p className="text-[10px] text-muted-foreground/70 pt-2">
+            Only non-sensitive card metadata is stored. Full card numbers and CVVs are never retained.
+          </p>
         </Section>
-        <Section title="Upcoming Bookings" className="md:col-span-2">
+        <Section title="Upcoming Bookings" className="md:col-span-2 lg:col-span-3">
           {upcoming.length === 0 ? (
             <p className="text-sm text-muted-foreground">No upcoming reservations.</p>
           ) : (
