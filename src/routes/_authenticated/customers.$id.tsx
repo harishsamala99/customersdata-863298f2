@@ -23,6 +23,16 @@ type Customer = Database["public"]["Tables"]["customers"]["Row"] & {
   chauffeur_preference?: string | null;
   billing_details?: string | null;
   account_status?: string | null;
+  date_of_birth?: string | null;
+  billing_address?: string | null;
+  shipping_address?: string | null;
+  id_type?: string | null;
+  id_number?: string | null;
+  card_holder_name?: string | null;
+  card_brand?: string | null;
+  card_last4?: string | null;
+  card_exp_month?: number | null;
+  card_exp_year?: number | null;
 };
 type Booking = Database["public"]["Tables"]["bookings"]["Row"];
 type Note = Database["public"]["Tables"]["customer_notes"]["Row"];
