@@ -43,7 +43,7 @@ function Dashboard() {
       supabase.from("bookings").select("amount").eq("payment_status", "paid"),
       supabase
         .from("bookings")
-        .select("id,pickup_location,dropoff_location,booking_date,booking_time,ride_status,payment_status,amount,customers(full_name)")
+        .select("id,customer_id,pickup_location,dropoff_location,booking_date,booking_time,ride_status,payment_status,amount,customers(full_name)")
         .order("created_at", { ascending: false })
         .limit(6),
     ]).then(([c, b, t, paid, rec]) => {
