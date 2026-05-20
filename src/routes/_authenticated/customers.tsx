@@ -1,6 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useMemo, useState } from "react";
-import { Plus, Search, FileDown, FileText, Pencil, Trash2 } from "lucide-react";
+import { Plus, Search, FileDown, FileText, Pencil, Trash2, Eye } from "lucide-react";
 import { toast } from "sonner";
 import { supabase } from "@/integrations/supabase/client";
 import { Input } from "@/components/ui/input";
@@ -159,6 +159,11 @@ function CustomersPage() {
                     </div>
                   </td>
                   <td className="px-6 py-3 text-right">
+                    <Link to="/customers/$id" params={{ id: c.id }}>
+                      <Button variant="ghost" size="icon" title="View Customer">
+                        <Eye className="h-4 w-4" />
+                      </Button>
+                    </Link>
                     <Button variant="ghost" size="icon" onClick={() => { setEditing(c); setOpen(true); }}>
                       <Pencil className="h-4 w-4" />
                     </Button>
